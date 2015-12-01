@@ -9,10 +9,6 @@ RUN apt-get clean
 COPY deps/start_safe_perms /usr/local/bin/
 RUN chmod +x /usr/local/bin/start_safe_perms
 
-
-
-EXPOSE 3306 80
-
 RUN php5enmod mcrypt
 
 COPY  ./deps/mysql/my.cnf /etc/mysql/my.cnf
