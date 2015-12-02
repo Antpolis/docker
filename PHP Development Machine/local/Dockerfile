@@ -3,10 +3,6 @@ MAINTAINER Chris Sim <chris.sim@antpolis.com>
 ADD deps/apache/development.conf /etc/apache2/sites-available/development.conf
 ENV DEVFOLDER /var/www/development
 
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
-
 RUN apt-get update && apt-get install -y nodejs npm
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
