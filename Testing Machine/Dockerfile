@@ -1,4 +1,4 @@
-FROM antpolis/base-nodejs-machine
+FROM antpolis/nodejs-machine
 MAINTAINER Chris Sim <chris.sim@antpolis.com>
 
 ## Setting up ENV
