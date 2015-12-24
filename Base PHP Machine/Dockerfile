@@ -3,8 +3,8 @@ MAINTAINER Chris Sim <chris.sim@antpolis.com>
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install apache2 mysql-server libapache2-mod-auth-mysql \
 								php5-mysql php5 libapache2-mod-php5 php5-mcrypt php5-common \
-								php5-curl php5-gd php5-cli php5-cgi php5-tidy git wget curl \
-								php5-mbstring
+								php5-curl php5-gd php5-cli php5-cgi php5-tidy git wget curl
+
 
 RUN apt-get clean
 
@@ -14,7 +14,7 @@ RUN chmod +x /usr/bin/composer
 
 
 RUN composer global require "fxp/composer-asset-plugin:~1.1.1"
-RUN mkdir ~/.composer
+
 COPY deps/composer/auth.json ~/.composer
 
 
