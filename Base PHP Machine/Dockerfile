@@ -25,4 +25,9 @@ RUN php5enmod mcrypt
 
 COPY  ./deps/mysql/my.cnf /etc/mysql/my.cnf
 
+RUN chown -Rf www-data:www-data /var/www
+RUN chmod -Rf 775 /var/www
+
+EXPOSE 80 3306
+
 CMD service apache2 restart

@@ -6,7 +6,7 @@
 #
 main() {
     local owner group owner_id group_id tmp
-    read owner group owner_id group_id < <(stat -c '%U %G %u %g' /var/www/development)
+    read owner group owner_id group_id < <(stat -c '%U %G %u %g' /var/www/html)
     if [[ $owner = UNKNOWN ]]; then
         owner=$(randname)
         if [[ $group = UNKNOWN ]]; then
