@@ -1,7 +1,0 @@
-developmentweb:
-  build: .
-  ports:
-    - 80:80
-    - 3306:3306
-  volumes:
-    - /Users/chrissim/Projects:/var/www/development
