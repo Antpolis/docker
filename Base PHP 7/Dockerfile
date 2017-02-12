@@ -3,8 +3,10 @@ MAINTAINER Chris Sim
 
 
 RUN apt-get -y update && apt-get install -y python-software-properties software-properties-common && apt-get update && apt-get -qq upgrade
+RUN add-apt-repository -y ppa:pinepain/libv8-5.2 && apt-get update
 
-RUN apt-get install -y --force-yes \
+
+RUN apt-get install -y \
   build-essential \
   imagemagick \
   php7.0 \
@@ -33,15 +35,21 @@ RUN apt-get install -y --force-yes \
   rsyslog \
   curl  \
   wget \
-  nano
+  nano \
+  libv8-dev
 
 RUN curl https://getcomposer.org/installer | php -- && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
+RUN printf "\n" | pecl install -f -a -l v8js-1.3.3
+
+RUN echo "extension=v8js.so" >> /etc/php/7.0/fpm/conf.d/v8js.ini
 
 RUN apt-get autoclean && apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
-
 EXPOSE 9000
+
+
+
 WORKDIR /var/www/html
-CMD ["/usr/local/sbin/php-fpm"]
+VOLUME ['/var/www/html','/var/log']
+CMD ["/usr/sbin/php-fpm7.0"]
