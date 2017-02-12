@@ -9,6 +9,7 @@ RUN add-apt-repository -y ppa:pinepain/libv8-5.2 && apt-get update
 RUN apt-get install -y \
   build-essential \
   imagemagick \
+  libpcre3 \
   php7.0 \
   php7.0-cli \
   php7.0-dev \
@@ -48,8 +49,11 @@ RUN apt-get autoclean && apt-get autoremove && apt-get clean && rm -rf /var/lib/
 
 EXPOSE 9000
 
+COPY www.conf /etc/php/7.0/fpm/pool.d/www.conf
 
+RUN mkdir /run/php
 
 WORKDIR /var/www/html
-VOLUME ['/var/www/html','/var/log']
-CMD ["/usr/sbin/php-fpm7.0"]
+VOLUME /var/www/html
+ENTRYPOINT  ["/usr/sbin/php-fpm7.0"]
+CMD ["-F"]
